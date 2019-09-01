@@ -32,15 +32,17 @@ during accessing the wer server is stored in "/var/log/apache2/error.log" file.
 
 #!/usr/bin/python3
 
+```
 import sys
 
 sys.path.insert(0, '/var/www/html/catalog')
 from catalog_project import app as application
 application.secret_key = "super-secret-key"
-
+```
 
 ### catalog.conf file:
 
+```
 <VirtualHost *:80>
 	ServerName localhost
 	WSGIScriptAlias / /var/www/html/catalog/catalog.wsgi
@@ -53,7 +55,7 @@ application.secret_key = "super-secret-key"
 	LogLevel warn
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
-
+```
 
 ## Security setup:
 
