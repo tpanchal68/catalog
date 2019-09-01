@@ -28,6 +28,32 @@ using "sudo a2ensite catalog.conf" command from the config file path directory. 
 restarted using "sudo service apache2 restart" to take catalog.conf execution in effect.  Any errors generated
 during accessing the wer server is stored in "/var/log/apache2/error.log" file.
 
+### catalog.wsgi file:
+
+#!/usr/bin/python3
+
+import sys
+
+sys.path.insert(0, '/var/www/html/catalog')
+from catalog_project import app as application
+application.secret_key = "super-secret-key"
+
+
+### catalog.conf file:
+
+<VirtualHost *:80>
+	ServerName localhost
+	WSGIScriptAlias / /var/www/html/catalog/catalog.wsgi
+	<Directory /var/www/html/catalog/>
+		# WSGIApplicationGroup %{GLOBAL}
+		WSGIScriptReloading On
+		Require all granted
+	</Directory>
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
 
 ## Security setup:
 
