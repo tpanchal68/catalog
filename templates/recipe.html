@@ -1,0 +1,104 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>{{ dishItems.name }}</h1>
+		</div>
+	</div>
+
+	{% if recipeItems !=[] %}
+		<h3 align="center">Recipe Ingredients</h3>
+		<table>
+			<tr>
+				<th>Ingredient No</th>
+				<th>Ingredients</th>
+				<th>Quantity</th>
+				<th>Measure</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			{% for line in recipeItems %}
+			<tr>
+				<th>{{ loop.index }}</th>
+				<td>{{ line.ingredients }}</td>
+				<td>{{ line.quantity }}</td>
+				<td>{{ line.measure }}</td>
+				<td>
+					<a href="{{url_for('editIngredient', catalog_id=catalog.id, dishItems_id=dishItems_id, recipeItems_id=line.id) }}">
+						<button class="btn btn-default" type="submit" name="submit_button" value="edit">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit</button>
+					</a>
+				</td>
+				<td>
+					<a href="{{url_for('deleteIngredient', catalog_id=catalog.id, dishItems_id=dishItems_id, recipeItems_id=line.id) }}">
+						<button class="btn btn-default delete" type="submit" name="submit_button" value="delete">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<h2><center>Page under construction.</center></h2>
+	{% endif %}
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<div class="place-button">
+				<a href="{{url_for('newIngredients', catalog_id=catalog.id, dishItems_id=dishItems_id)}}">
+					<button class="btn btn-default">
+						<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add Ingredients
+					</button>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+
+	{% if methodItems !=[] %}
+		<h3 align="center">Recipe Steps</h3>
+		<table>
+			<tr>
+				<th>Step No</th>
+				<th>Steps</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			{% for method in methodItems %}
+			<tr>
+				<th>{{ loop.index }}</th>
+				<td>{{ method.steps }}</td>
+				<td>
+					<a href="{{url_for('editRecipeStep', catalog_id=catalog.id, dishItems_id=dishItems_id, recipeSteps_id=method.id) }}">
+						<button class="btn btn-default" type="submit" name="submit_button" value="edit">
+						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Edit</button>
+					</a>
+				</td>
+				<td><a href="{{url_for('deleteRecipeStep', catalog_id=catalog.id, dishItems_id=dishItems_id, recipeSteps_id=method.id) }}">
+						<button class="btn btn-default delete" type="submit" name="submit_button" value="delete">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<div class="place-button">
+				<a href="{{url_for('newRecipeSteps', catalog_id=catalog.id, dishItems_id=dishItems_id)}}">
+					<button class="btn btn-default">
+						<span class="glyphicon glyphicon-road" aria-hidden="true"></span>Add Steps
+					</button>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+
+{% endblock %}

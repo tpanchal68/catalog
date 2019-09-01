@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Food Catalog</h1>
+		</div>
+	</div>
+
+	{% for catalog in catalogs %}
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<div class="col-md-10 menu-item">
+					<a href = "{{url_for('showDish', catalog_id = catalog.id)}}">
+						<h3>{{catalog.name}}</h3>
+					</a>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

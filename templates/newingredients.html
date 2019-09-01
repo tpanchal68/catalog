@@ -1,0 +1,55 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>New Ingredient</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+			<form action="#" method = "post">
+				<div class="form-group">
+					<label for="ingredients">Ingredients:</label>
+					<input type ="text" maxlength="50" class="form-control" name="ingredients" placeholder="Name of the ingredient" required>
+
+					<label for="quantity">Quantity:</label>
+					<input type ="text" maxlength="50" class="form-control" name="quantity" placeholder="Quantity" required>
+
+					<label for="measure">Measure:</label>
+					<select name="measure" required>
+						<option value="teaspoon">teaspoon</option>
+						<option value="tablespoon">tablespoon</option>
+						<option value="fluid ounce">fluid ounce</option>
+						<option value="cup">cup</option>
+						<option value="pint">pint</option>
+						<option value="quart">quart</option>
+						<option value="gallon">gallon</option>
+						<option value="milliliter">milliliter</option>
+						<option value="liter">liter</option>
+						<option value="deciliter">deciliter</option>
+						<option value="pound">pound</option>
+						<option value="ounce">ounce</option>
+						<option value="milligram">milligram</option>
+						<option value="gram">gram</option>
+						<option value="kilogram">kilogram</option>
+						<option value="millimeter">millimeter</option>
+						<option value="centimeter">centimeter</option>
+						<option value="meter">meter</option>
+						<option value="inch">inch</option>
+					</select>
+
+					<button type="submit" class="btn btn-default" id="submit" type="submit">
+					<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add</button>
+        			<a href = "{{url_for('showRecipe', catalog_id=catalog_id, dishItems_id=dishItems_id)}}">
+						<button class="btn btn-default delete">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+        			</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

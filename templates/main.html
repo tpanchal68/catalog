@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% block title %}<title>{{ APP_NAME }}</title>{% endblock %}
+		<!-- Font -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- If you choose to use bootstrap from internet -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Additional local files -->
+			<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+			<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/main.css') }}">
+			<script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+		<!-- Google sign in  -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+	</head>
+ 	<body>
+		<div>
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">
+							<img src="{{ url_for('static', filename='images/data_science.png') }}" alt="Logo">
+						</a>
+					</div>
+
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<li><a href="{{url_for('showCatalog')}}">
+								<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+								Catalog App</a></li>
+							<li><a href="{{ url_for('about') }}">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+								About</a></li>
+							<li><a href="{{ url_for('contact') }}">
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+								Contact</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							{%if 'username' not in session %}
+								<li><a href="{{url_for('showLogin')}}">
+									<span class="glyphicon glyphicon-log-in"></span>
+									Login</a></li>
+							{% else %}
+								<li>
+									<a href="{{url_for('disconnect')}}">
+										<span class="glyphicon glyphicon-log-out"></span>
+										<img src="{{ session['picture']}}"
+											 alt="profile image"
+											 class="navbar-profile-image image-responsive pull-left">Logout
+									</a>
+								</li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		{% block content %}
+		{% endblock %}
+
+		<!-- Footer -->
+		<footer class="container-fluid text-center">
+			<p>&copy; TP Systems 2019</p>
+		</footer>
+		<!-- Footer -->
+	</body>
+</html>   

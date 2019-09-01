@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Edit Recipe Step</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+			<form action="#" method = "post">
+				<div class="form-group">
+					<label for="steps">Recipe Step:</label>
+					<input type ="text" maxlength="500" class="form-control" name="steps" value="{{item.steps}}" required>
+
+					<a href = "{{url_for('showRecipe', catalog_id=catalog_id, dishItems_id=dishItems_id)}}">
+						<button class="btn btn-default" type="submit" name="submit_button" value="save">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save</button>
+						<button class="btn btn-default delete" type="submit" name="submit_button" value="cancel">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancel</button>
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

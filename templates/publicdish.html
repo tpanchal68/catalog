@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>{{ catalog.name }}</h1>
+		</div>
+	</div>
+	{% if dishItems !=[] %}
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-3">
+				{% for i in dishItems %}
+					<div class="col-md-10 menu-item">
+						<a href = "{{url_for('showRecipe', catalog_id = catalog.id, dishItems_id = i.id)}}">
+						<h3>{{i.name}}</h3></a>
+						<p>{{i.description}}</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

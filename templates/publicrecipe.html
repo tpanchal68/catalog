@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>{{ dishItems.name }}</h1>
+		</div>
+	</div>
+	{% if recipeItems !=[] %}
+		<table>
+			<tr>
+				<th>Item No</th>
+				<th>Ingredients</th>
+				<th>Quantity</th>
+				<th>Measure</th>
+			</tr>
+			{% for line in recipeItems %}
+			<tr>
+				<th>{{ loop.index }}</th>
+				<td>{{ line.ingredients }}</td>
+				<td>{{ line.quantity }}</td>
+				<td>{{ line.measure }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<h2><center>Page under construction.</center></h2>
+	{% endif %}
+
+	{% if methodItems !=[] %}
+		<table>
+			<tr>
+				<th>Item No</th>
+				<th>Steps</th>
+			</tr>
+			{% for method in methodItems %}
+			<tr>
+				<th>{{ loop.index }}</th>
+				<td>{{ method.steps }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+{% endblock %}
