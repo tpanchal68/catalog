@@ -152,7 +152,7 @@ Since dns is not required, I am not going to waste money to get hostname.
 https://github.com/tpanchal68/catalog
 
 ## Third-party Resource:
-https://stackoverflow.com
-https://www.codementor.io/abhishake/minimal-apache-configuration-for-deploying-a-flask-app-ubuntu-18-04-phu50a7ft
-https://flask.palletsprojects.com/en/1.1.x/deploying/mod_wsgi/
-https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+1. https://stackoverflow.com
+2. https://www.codementor.io/abhishake/minimal-apache-configuration-for-deploying-a-flask-app-ubuntu-18-04-phu50a7ft
+3. https://flask.palletsprojects.com/en/1.1.x/deploying/mod_wsgi/
+4. https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
