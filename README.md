@@ -28,6 +28,14 @@ using "sudo a2ensite catalog.conf" command from the config file path directory. 
 restarted using "sudo service apache2 restart" to take catalog.conf execution in effect.  Any errors generated
 during accessing the wer server is stored in "/var/log/apache2/error.log" file.
 
+Along with all the project files, all the necessary python packages were installed using "sudo pip install <package>"
+command.  Initially, I had lots of struggles getting mod-wsgi to see the packages; eventhough, packages were
+installed.  After lots of struggle, I found that I had installed package without sudo mode by simply using
+"pip install <package>".  The issue with that is that this way, pip creates ".local" directory in user's homepage;
+thus, mod-wsgi just doesn't see it.  Then if you try to install using sudo, pip always tells that the requirement
+is satisfied.  To overcome the issue, I had to delete ".local" directory using "rm -r .local" command from
+user's home directory.  Then I installed each packages using "sudo pip install <package>", and it worked fine.
+
 ### catalog.wsgi file:
 
 #!/usr/bin/python3
@@ -61,8 +69,7 @@ application.secret_key = "super-secret-key"
 
 Security for this machine is setup using Ubuntu Firewall (ufw) package.  By default, all ingress and egress ports are blocked.
 All necessary ports are opened for web application to perform properly as well as all necessary application upgrade
-functionality to function properly.  List of port open are 22, 9418, 2222, 80, 443, 53, 37, 101, 161, 135, 427, 43,
-115, 525, 123, 873, 989, 990, 530, 546, 547, and 593.
+functionality to function properly.  List of port open are 2222, 80, and 123.
 
 
 ## Accessing web server:
@@ -139,3 +146,13 @@ Dev server: http://localhost:8000/
 
 Prod server: http://34.214.235.37/
 
+Since dns is not required, I am not going to waste money to get hostname.
+
+## Github Repo:
+https://github.com/tpanchal68/catalog
+
+## Third-party Resource:
+https://stackoverflow.com
+https://www.codementor.io/abhishake/minimal-apache-configuration-for-deploying-a-flask-app-ubuntu-18-04-phu50a7ft
+https://flask.palletsprojects.com/en/1.1.x/deploying/mod_wsgi/
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
